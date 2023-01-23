@@ -1,0 +1,10 @@
+form {
+    height: 450px;
+    border: 1px gray solid;
+    background-color: rgb(29, 29, 29);
+    color: aliceblue;
+}
+
+mat-form-field{
+    width: 400px;
+}

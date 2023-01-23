@@ -1,0 +1,13 @@
+<section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+<mat-progress-spinner
+ mode="determinate" 
+ [value]="progress" 
+ ></mat-progress-spinner>
+<h2>{{ progress }}</h2>
+<p>Training progress</p>
+<button *ngIf='!showStopButton' mat-raised-button color="primary" (click)="onStop()">Stop</button>
+<button *ngIf='showContinueButton' mat-raised-button color="primary" (click)="onContinue()">Continue</button>
+
+
+
+</section>

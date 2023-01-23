@@ -1,0 +1,168 @@
+ vazni linkovi 
+https://angular.io/docs
+https://update.angular.io/?l=3&v=14.0-15.0
+https://material.angular.io/components/categories
+https://hammerjs.github.io/
+
+
+(((((((((((((((((
+npm install -g @angular/cli
+
+npm install -g typescript
+
+generisanje/pravljenje komponeneti 
+ng g c naziv_komponente/naziv_komponente (folder/file)
+ ng g c auth/profile --module app.module.ts  // nova komponenta sa automatskom registracijom
+
+instalacije materijala vazno
+npm install --save @angular/material
+npm install --save/animations
+
+npm install --save/cdk
+
+npm install @angular/flex-layout ( morao --force install )
+
+))))))))))))))))))))))))
+
+
+ng serve // za pokretanje servera 
+npm install -g @angular/cli
+// na osnovu package.json on ce instalirati potrebne module
+
+npm install -g typescript
+
+generisanje/pravljenje komponeneti 
+ng g c naziv_komponente/naziv_komponente (folder/file)
+
+
+instalacije materijala vazno
+npm install --save @angular/material
+npm install --save/animations
+
+npm install --save/cdk
+
+pravimo fajl u app zbog modula da bi bili lepo razvrstani ( moramo da je dovedemo do app modula da bi se videle klase) 
+
+PRAVIMO ROUTING
+
+pravimo fajl app-routing.module.ts
+
+
+////
+dizanje aplikacije na nivou browsera  ( hammerjs -  sluzi za prepoznavanje touchpad funkcionalnosti )  import 'hammerjs'; u main.ts
+fontovi se dodaju u index.html filu
+
+app. == korena komponenta
+
+
+index fajl koji se vidi <--- dobija informacije od app.komponenti <--- a app  komponente stizu kroz selektore 
+( ti selektori mogu imati roditeljsku komponentu prevrious i current trainting u parent training )  
+rade asihrono zavisno od potrebe ap selektora koji ce child da se iskroiti
+
+google fontovi link rel ide u index html  https://developers.google.com/fonts/docs/material_icons
+
+cdn content delivery network
+
+
+izvlacenje angular material iconice , uvesti standardno api https://material.angular.io/components/icon/api
+
+
+
+uvozenje angular flexa  - npm install @angular/flex-layout  . 
+github.com/angular/flex-layout  cela datoteka i struktura  ( slican cssu za shvatanje pozicija )
+
+
+Angular material registrujemo ga u root, ako pravismo custom i dalje mora biti zavedeno u korenu app.
+custom komponente u deklaracije
+
+
+koriscenje forme https://angular.io/api/forms
+
+
+https://github.com/angular/flex-layout/wiki/Declarative-API-Overview // kako se koriste atributi
+https://angular.io/guide/forms-overview // slusanje dogadjaja koji desavaju tokom forme i njeno pracenje i ispitivanje lokalne promenjive
+
+
+
+radi grupisanja elemenata i radi bolje preglednosti pravimo #f='ngForm' 
+i da bi imali nesto da ga cita metoda (ngSubmit)='onSubmit(f)'
+ngForm smo registrovali u koreni deo uz FormsModule
+
+nakom toga pravimo typescript gde izvlacimo date podatke
+
+strukturna direktiva pocinje *
+
+
+{{ }} - string input iskoricen   
+
+ngModel- direktiva za bindovanje koja se definise na nivou templejta - gde vezujemo polje asihrono i vracamo direktan rezultat
+<!--matInput direktiva za pristupalje radu elemenata pri komponentama mat-form-field-->
+
+
+u package.json gledamo sta koristimo i sta smo instalirali, posle testiranja se brisu nebitne stvari
+
+
+ngOnInit se koristi u komponenti klasa kad zelimo da izvrsimo neku radnju posle legicke procedure i da nema vracanja u ciklus
+
+
+!! samo jedan constructor mozemo imati na nivou jedne klase u angularu
+
+
+MatTableDataSource - povezivanje atributa sa tabelom
+
+
+podatke stavljamo private ( jer na public mogu pristupe podacima )
+
+typescript komponente se racunaju kao parent komponente, a sve ostalo html css (template) kao child
+
+
+  //Inject direktiva za ubacivanje podataka u deo gde radimo refenciranje gde treba da primimo taj podatak
+
+Logika iza Injecta
+constructor(@Inject(MAT_DIALOG_DATA) public receivedData: any) {}  - u toj komponenti 
+
+onStop(){ 
+  clearInterval(this.timer)
+  this.showContinueButton = true;
+  this.showStopButton = true;
+  this.dialog.open(StopTrainingComponent, {    -- Gde iz komponente iz koje vadimo informacije dodajemo dialog u ovom slucaju 
+    data: {                                                             i komponentu na otvaranju, tacan progress trenutni 
+      progress: this.progress
+    }
+  })
+
+
+
+
+
+
+//// STILIZOVANJE SCSS
+https://material.angular.io/guide/theming-your-components
+
+
+PALETA BOJA
+https://m2.material.io/design/color/the-color-system.html#color-usage-and-palettes
+
+
+
+@import '@angular/material/theming';
+
+
+
+@include mat-core(); //mehanizam gde cemo izvrsiti prikazivanje cele tehnologije
+//pozivamo sablone boja
+$my-theme-primary: mat-palette($mat-orange);
+$my-theme-accent: mat-palette($mat-blue, A200, A100, A400);
+$my-theme-warn: mat-palette($mat-red);
+//belezimo te sablone boja u nasoj temi
+$my-theme: mat-dark-theme($my-theme-primary,
+                          $my-theme-accent,
+                          $my-theme-warn);
+//ta tema mora da bude includovana
+@include angular-material-theme($my-theme);
+
+
+
+scss moramo da uvedemo u angular.json -> architect -> style
+
+odradi posle npm rebuild node-sass pa onda ng serve da bi prihvatilo temu 

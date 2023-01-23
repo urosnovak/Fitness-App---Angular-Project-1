@@ -1,0 +1,77 @@
+<!-- 
+Flex-layout
+https://github.com/angular/flex-layout/wiki/Declarative-API-Overview sve direktive i kako da ih koristimo ( atributi )
+-->
+<!-- Promenjiva koja slusa vrednosti cele forme je #f, kad su svi uslovi izvrseni ngSubmit odradjuje  -->
+
+<section>
+    <form
+     fxLayout="column"
+     fxLayoutAlign="center center"
+     fxLayoutGap="7px"
+     #f="ngForm"
+     (ngSubmit)="onSubmit(f)">
+<!--email-->
+<mat-form-field>
+    <input
+    type="email"
+    matInput 
+    placeholder="Your email"
+    ngModel 
+    name="email"
+    email
+    required
+    #emailInput="ngModel"> 
+    <mat-error *ngIf="emailInput.hasError('required')">Field should not be empty</mat-error>
+    <mat-error *ngIf="!emailInput.hasError('required')">Please use the correct email format.</mat-error>
+</mat-form-field>
+<!--*ngIf strukturna direktiva-->
+
+<!--sfira-->
+<mat-form-field hintLabel="Please enter minimum 8 characters.">
+    <input
+    type="password"
+    matInput
+    placeholder="Your password"
+    ngModel 
+    name="password"
+    required
+    minlength="8"
+    #passInput="ngModel" 
+    >
+    <mat-hint align="end">{{ passInput.value?.length }} / 8</mat-hint> <!--string input-->
+</mat-form-field>
+<!--ngModel- direktiva za bindovanje koja se definise na nivou templejta - gde vezujemo polje asihrono i vracamo direktan rezultat-->
+<!--matInput direktiva za pristupalje radu elemenata pri komponentama mat-form-field-->
+
+
+<!--datum i kalendar-->
+<!--preko matSuffixa govorimo kako da se ponasa picker. math datepicker ce inicirati toggle i koji ce pokrenuti ceo mehanizam i koji pokrece matSuffix, koja se izvrsava nak inicijalizacije math pickera -->
+<!--[for] picker prolazi kroz sve navedene datume i prolazi kroz sve specificke datume. -->
+<mat-form-field>
+    <input
+    matInput 
+    placeholder="Your date of birth."
+    [matDatepicker]="picker" 
+    ngModel
+    name="birthDate"
+    required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<!--Potvrda forme-->
+<button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button> <!-- bind value [] -->
+ 
+<!-- Opciono - tekstualni link ka komponenti za prijavu-->
+<mat-label *ngIf="errorExists">{{ errorText }}</mat-label>
+
+<!-- Potvrda uslova za koriscenje-->
+<mat-checkbox 
+color="'primary" 
+ngModel name="acceptance" 
+required>I accept the terms and conditions of use</mat-checkbox>
+
+</form>
+</section>
+<!-- matInput je direktiva koju cemo dati specificnom polju -->
