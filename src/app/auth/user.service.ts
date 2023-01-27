@@ -5,6 +5,7 @@ export interface User {
     email: string;
     password: string;
     date:Date;
+    address?: string;
 } 
 
 
@@ -28,7 +29,7 @@ currentUser: User = UserService.dummyUserList[0];
             password: "012345678",
             date: new Date("2023-01-23 13:00")
         }];
-    
+    //metode koje nam vracaju informacije ( po emailu i da li korisnik odgovara po tim informacijama i sifra da li je odgovarajuca)
 getUserName(user: User): string{
     return user.email;
 }
@@ -42,8 +43,10 @@ if(user.id === id) {
 }
 
     });
+//tog korisnika kod koga smo  se prijavili, on je objekat i rezultat onoga sto smo napravili i stavili smo referencu i ugradili tog korisnika
     this.currentUser = foundUser;
     return foundUser;
+
 } //generator vrednosti, dinamicki vracamo svakog korisnika po mehanizmu, napravio sam user id trazimo korisnika iz date liste, prolazimo kroz celu listu i napravili user da li je to taj user
 getUser(userEmail: string) : User {
     // return UserService.dummyUserList.find(userToFind => userToFind.email === userEmail)!;  // skipujemo na kraju sa ! jer necemo uvek imati konstruktora, gore smo ga definisali pa pozvali.
@@ -56,6 +59,7 @@ isPasswordCorrect(userEmail: string, password:string): boolean {
     return UserService.dummyUserList.find(userToFind =>
         (userToFind.email === userEmail && userToFind.password === password)) != undefined;
 } 
+// da li je id zauzet i dodeljivanje idu po sing upu i pushovati ga 
 registerUser(email: string, password: string, date: Date) : User {
 var maxId: number = 0;
 UserService.dummyUserList.forEach(user => {

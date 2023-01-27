@@ -24,7 +24,7 @@ ngOnInit():void {
 onSubmit(form: NgForm){     //pristupam tagu angular forme i prosledi mi podatke te forme
   if (!this.userService.getUser(form.value.email)){
     this.errorExists = false;
-
+//setovali smo greske po defaultu da su false i ako je u redu vraca redirekcija na home, ako nije pise error true ide poruka
     var newUser = this.userService.registerUser(form.value.email,
                                                 form.value.password,
                                                 form.value.birthDate);

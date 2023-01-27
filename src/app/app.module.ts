@@ -48,5 +48,6 @@ import { ProfileComponent } from './auth/profile/profile.component';
   providers: [TrainingService, UserService],//servis nije komponenta i nema dekorator komponente i ne ide u dekorator nego za simulaciju podataka i ne pokrece nam se uz stranicu, nego ceka stranica od providera
   bootstrap: [AppComponent],
   entryComponents:[StopTrainingComponent, ProfileComponent] //mehanizam pokretanja dela koda u trenutku kada pokrenemo neku komponentu, u cilju bolje optimizacije
+  //entry komponenta mora da stoji i u deklaracijama, da bi bila registrovana, a to sto mi stavljamo u entry je nezavisno jedno od drugog
 })
 export class AppModule { }
